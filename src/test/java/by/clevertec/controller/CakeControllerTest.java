@@ -2,7 +2,6 @@ package by.clevertec.controller;
 
 import by.clevertec.domain.Cake;
 import by.clevertec.service.CakeService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -68,8 +67,7 @@ class CakeControllerTest {
 
         //when, then
         mockMvc.perform(post("/api/v1/cake")
-                        .content(new ObjectMapper()
-                                .findAndRegisterModules()
+                        .content(TestData.getObjectMapper()
                                 .writeValueAsString(cake))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -85,12 +83,11 @@ class CakeControllerTest {
 
         //when, then
         mockMvc.perform(put("/api/v1/cake/" + cake.getId())
-                        .content(new ObjectMapper()
-                                .findAndRegisterModules()
+                        .content(TestData.getObjectMapper()
                                 .writeValueAsString(cake))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(cake.getId().toString()));
+                .andExpect(jsonPath("$.title").value(cake.getTitle()));
     }
 
     @Test

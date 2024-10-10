@@ -63,7 +63,7 @@ class CakeServiceTest {
         assertFalse(actualCakes.isEmpty());
     }
 
-    @MethodSource("util.TestData#getArgumentsForTest")
+    @MethodSource("util.TestData#getArgumentsForShouldFindCakeByIdAndShouldUpdateCakeTests")
     @ParameterizedTest
     void shouldFindCakeById(UUID cakeId, Cake cake, CakeEntity cakeEntity) {
         //given
@@ -119,7 +119,7 @@ class CakeServiceTest {
         verifyNoMoreInteractions(cakeRepository);
     }
 
-    @MethodSource("util.TestData#getArgumentsForTest")
+    @MethodSource("util.TestData#getArgumentsForShouldFindCakeByIdAndShouldUpdateCakeTests")
     @ParameterizedTest
     void shouldUpdateCake(UUID cakeId, Cake cake, CakeEntity cakeEntity) {
         //given
